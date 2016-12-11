@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AndroStorm</string>
+    <string name="city">Miasto:</string>
+    <string name="storm_p">Prawdopodobieństwo burzy:</string>
+    <string name="rain_p">Prawdopodobieństwo deszczu:</string>
+    <string name="storm_t">Czas do burzy:</string>
+    <string name="rain_t">Czas do deszczu:</string>
 </resources>
