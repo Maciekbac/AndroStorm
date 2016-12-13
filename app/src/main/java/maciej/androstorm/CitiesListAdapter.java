@@ -17,9 +17,10 @@ public class CitiesListAdapter extends CursorAdapter {
 
     CheckBox cb;
 
-    public CitiesListAdapter(Context context, Cursor c, int flags) {
-        super(context, c, flags);
+    public CitiesListAdapter(Context context, Cursor c, boolean autoRequery) {
+        super(context, c, autoRequery);
     }
+
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup viewGroup) {
@@ -33,19 +34,23 @@ public class CitiesListAdapter extends CursorAdapter {
 
         String city = cursor.getString(cursor.getColumnIndexOrThrow("city"));
         tv.setText(city);
-        cb.setChecked(cursor.getInt(cursor.getColumnIndexOrThrow("fav"))!=0);
 
         final int cityId = cursor.getInt(cursor.getColumnIndex("_id"));
         cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
                 SQLiteDatabase db = new CitiesDatabase(context).getWritableDatabase();
-                if (checked)
+                if (checked){
                     db.execSQL("UPDATE Cities SET fav = 1 WHERE _id = "+cityId);
-                else
+                }
+
+                else{
                     db.execSQL("UPDATE Cities SET fav = 0 WHERE _id = "+cityId);
+                }
                 db.close();
             }
         });
+
+        cb.setChecked(cursor.getInt(cursor.getColumnIndexOrThrow("fav"))!=0);
     }
 }

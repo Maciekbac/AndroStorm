@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            Intent i = new Intent(MainActivity.this, CitiesListActivity.class);
+            Intent i = new Intent(MainActivity.this, FavouriteCitiesActivity.class);
             startActivity(i);
             finish();
         }

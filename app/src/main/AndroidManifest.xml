@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".WeatherActivity" />
-        <activity android:name=".CitiesListActivity"></activity>
+        <activity android:name=".CitiesListActivity" />
+        <activity android:name=".FavouriteCitiesActivity"></activity>
     </application>
 
 </manifest>

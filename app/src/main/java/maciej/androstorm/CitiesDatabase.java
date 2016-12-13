@@ -49,9 +49,15 @@ public class CitiesDatabase extends SQLiteOpenHelper {
     public Cursor getAllCities(){
         String[] columns = {"_id","city","fav"};
         SQLiteDatabase db = getReadableDatabase();
-        Cursor c = db.query("Cities",columns,null,null,null,null,"city ASC");
+        Cursor c = db.query("Cities",columns,null,null,null,null,null);
         return c;
     }
 
+    public Cursor getFavCities(){
+        String[] columns = {"_id","city","fav"};
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.query("Cities",columns,"fav=?", new String[]{"1"},null,null,null);
+        return c;
+    }
 
 }

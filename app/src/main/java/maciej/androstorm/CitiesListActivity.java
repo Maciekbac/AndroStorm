@@ -18,7 +18,7 @@ public class CitiesListActivity extends AppCompatActivity {
         ListView lv = (ListView)findViewById(R.id.lv_cities);
         CitiesDatabase db = new CitiesDatabase(this);
         Cursor c = db.getAllCities();
-        cla = new CitiesListAdapter(this,c,0);
+        cla = new CitiesListAdapter(this,c,true);
 
         lv.setAdapter(cla);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
