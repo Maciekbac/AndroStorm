@@ -5,9 +5,15 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class CitiesDatabase extends SQLiteOpenHelper {
+    Context context;
     public CitiesDatabase(Context context) {
         super(context, "cities.db", null, 1);
+        this.context = context;
     }
 
     @Override
@@ -16,11 +22,22 @@ public class CitiesDatabase extends SQLiteOpenHelper {
                 "_id integer primary key," +
                 "city text," +
                 "fav integer);");
-        db.execSQL("INSERT INTO Cities VALUES (0,'Aleksandrów Kujawski',0)");
-        db.execSQL("INSERT INTO Cities VALUES (1,'Aleksandrów Łódzki',0)");
-        db.execSQL("INSERT INTO Cities VALUES (350,'Szczecin',0)");
-        db.execSQL("INSERT INTO Cities VALUES (134,'Kołobrzeg',0)");
-        db.execSQL("INSERT INTO Cities VALUES (144,'Koszalin',0)");
+        BufferedReader reader;
+        try
+        {
+            reader = new BufferedReader(new InputStreamReader(context.getAssets().open("cities")));
+            String line;
+            int i=0;
+            while ((line = reader.readLine()) != null){
+                db.execSQL("INSERT INTO Cities VALUES ("+i+",'"+line+"',0)");
+                i++;
+            }
+        }catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+
+
     }
 
     @Override
@@ -35,4 +52,6 @@ public class CitiesDatabase extends SQLiteOpenHelper {
         Cursor c = db.query("Cities",columns,null,null,null,null,"city ASC");
         return c;
     }
+
+
 }
