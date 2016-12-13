@@ -4,17 +4,13 @@
     android:id="@+id/activity_cities_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="maciej.androstorm.CitiesListActivity">
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/lv_cities" />
+        android:id="@+id/lv_cities"
+        android:layout_alignParentLeft="true" />
 </RelativeLayout>
