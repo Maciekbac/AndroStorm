@@ -19,7 +19,7 @@
         android:text="@string/city_noWarnings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/fli_waring"
+        android:id="@+id/fli_noWarnings"
         android:layout_below="@+id/fli_city"
         android:layout_alignLeft="@+id/fli_city"
         android:layout_alignStart="@+id/fli_city" />
@@ -29,9 +29,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/fli_rain_t"
-        android:layout_below="@+id/fli_waring"
-        android:layout_alignLeft="@+id/fli_waring"
-        android:layout_alignStart="@+id/fli_waring" />
+        android:layout_below="@+id/fli_noWarnings"
+        android:layout_alignLeft="@+id/fli_noWarnings"
+        android:layout_alignStart="@+id/fli_noWarnings" />
 
     <TextView
         android:text="@string/storm_t"
@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/fli_rain_t_v"
-        android:layout_below="@+id/fli_waring"
+        android:layout_below="@+id/fli_noWarnings"
         android:layout_toRightOf="@+id/fli_rain_t"
         android:layout_toEndOf="@+id/fli_rain_t"
         android:textStyle="bold"
@@ -79,7 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/fli_rain_p"
-        android:layout_below="@+id/fli_waring"
+        android:layout_below="@+id/fli_noWarnings"
         android:layout_toRightOf="@+id/fli_rain_t_v"
         android:layout_toEndOf="@+id/fli_rain_t_v"
         android:layout_marginLeft="11dp"
