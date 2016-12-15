@@ -5,6 +5,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -64,6 +67,25 @@ public class CitiesDatabase extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.query("Cities",columns,"fav=?", new String[]{"1"},null,null,null);
         return c;
+    }
+
+    public void jsonToWeather(String json, int cityId) throws Exception {
+        JSONObject jso = new JSONObject(json);
+        SQLiteDatabase db = getWritableDatabase();
+        int t_o = jso.getInt("t_o");
+        int p_o = jso.getInt("p_o");
+        int t_b = jso.getInt("t_b");
+        int p_b = jso.getInt("p_b");
+        int a_o = jso.getInt("a_o");
+        int a_b = jso.getInt("a_b");
+
+        db.execSQL("UPDATE Cities SET t_o = "+t_o+" WHERE _id = "+cityId);
+        db.execSQL("UPDATE Cities SET p_o = "+p_o+" WHERE _id = "+cityId);
+        db.execSQL("UPDATE Cities SET t_b = "+t_b+" WHERE _id = "+cityId);
+        db.execSQL("UPDATE Cities SET p_b = "+p_b+" WHERE _id = "+cityId);
+        db.execSQL("UPDATE Cities SET a_o = "+a_o+" WHERE _id = "+cityId);
+        db.execSQL("UPDATE Cities SET a_b = "+a_b+" WHERE _id = "+cityId);
+        db.close();
     }
 
 }
