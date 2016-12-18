@@ -4,5 +4,9 @@
     <string name="storm_p">Prawdopodobieństwo burzy:</string>
     <string name="rain_p">Prawdopodobieństwo deszczu:</string>
     <string name="storm_t">Czas do burzy:</string>
-    <string name="rain_t">Czas do deszczu:</string>
+    <string name="rain_t">Czas do opadu:</string>
+    <string name="city_noWarnings">Brak ostrzeżeń dla miasta</string>
+    <string name="probability">Prawdopodobieństwo:</string>
+    <string name="refresh">Odśwież</string>
+    <string name="error">Błąd</string>
 </resources>
