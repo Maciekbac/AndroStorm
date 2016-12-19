@@ -44,16 +44,7 @@ public class FavouriteCitiesActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(FavouriteCitiesActivity.this,WeatherActivity.class);
-                int cityId = (int)fca.getItemId(i);
-                intent.putExtra("city",cityId);
-                startActivity(intent);
-            }
-        });
+        refreshAllCities();
     }
 
     @Override
@@ -74,19 +65,24 @@ public class FavouriteCitiesActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_refresh) {
-            ArrayList<Integer> cities = new ArrayList<Integer>();
-            Cursor cursor = db.getFavCities();
-            cursor.moveToFirst();
-            while(!cursor.isAfterLast()) {
-                cities.add(cursor.getInt(cursor.getColumnIndex("_id")));
-                cursor.moveToNext();
-            }
-            cursor.close();
-            new Connection().execute(cities);
+            refreshAllCities();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void refreshAllCities()
+    {
+        ArrayList<Integer> cities = new ArrayList<Integer>();
+        Cursor cursor = db.getFavCities();
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()) {
+            cities.add(cursor.getInt(cursor.getColumnIndex("_id")));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        new Connection().execute(cities);
     }
 
     private class Connection extends AsyncTask<ArrayList<Integer>, Integer, Integer>{
