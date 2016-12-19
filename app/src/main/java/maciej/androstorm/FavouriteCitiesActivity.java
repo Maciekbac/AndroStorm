@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 public class FavouriteCitiesActivity extends AppCompatActivity {
     FavouriteCitiesAdapter fca;
     CitiesDatabase db;
-
+    SwipeRefreshLayout swipelayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +37,8 @@ public class FavouriteCitiesActivity extends AppCompatActivity {
         fca = new FavouriteCitiesAdapter(this,c,true);
         lv.setAdapter(fca);
 
+        refreshAllCities();
+
         FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab_fav);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +47,15 @@ public class FavouriteCitiesActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        refreshAllCities();
+
+        swipelayout = (SwipeRefreshLayout)findViewById(R.id.swiperefresh);
+        swipelayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipelayout.setRefreshing(false);
+                refreshAllCities();
+            }
+        });
     }
 
     @Override
