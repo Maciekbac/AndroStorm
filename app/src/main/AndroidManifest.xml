@@ -3,7 +3,6 @@
     package="maciej.androstorm">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +18,8 @@
         </activity>
         <activity android:name=".WeatherActivity" />
         <activity android:name=".CitiesListActivity" />
-        <activity android:name=".FavouriteCitiesActivity"></activity>
+        <activity android:name=".FavouriteCitiesActivity" />
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>

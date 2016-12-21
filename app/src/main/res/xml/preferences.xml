@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:key="refresh_on_startup"
+        android:title="@string/pref_refreshOnStartup_title"
+        android:summary="@string/pref_refreshOnStartup_summary"
+        android:defaultValue="true" />
+</PreferenceScreen>

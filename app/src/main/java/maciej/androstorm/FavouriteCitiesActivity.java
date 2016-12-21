@@ -2,9 +2,11 @@ package maciej.androstorm;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -12,11 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import org.json.JSONException;
 
 import java.util.ArrayList;
 
@@ -37,7 +36,10 @@ public class FavouriteCitiesActivity extends AppCompatActivity {
         fca = new FavouriteCitiesAdapter(this,c,true);
         lv.setAdapter(fca);
 
-        refreshAllCities();
+        SharedPreferences sharedP = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean refreshOnStartup = sharedP.getBoolean("refresh_on_startup",true);
+        if(refreshOnStartup)
+            refreshAllCities();
 
         FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab_fav);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +80,10 @@ public class FavouriteCitiesActivity extends AppCompatActivity {
         if (id == R.id.action_refresh) {
             refreshAllCities();
             return true;
+        }
+        else if(id == R.id.action_settings){
+            Intent i = new Intent(FavouriteCitiesActivity.this,SettingsActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);

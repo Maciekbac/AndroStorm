@@ -10,4 +10,6 @@
     <string name="refresh">Odśwież</string>
     <string name="error">Błąd</string>
     <string name="settings">Ustawienia</string>
+    <string name="pref_refreshOnStartup_title">Automatyczne pobranie danyc</string>
+    <string name="pref_refreshOnStartup_summary">Automatycznie pobierz dane pogodowe przy stacie aplikacji</string>
 </resources>
